@@ -47,7 +47,7 @@ var education = {
 			"location" : "Fairfax, VA, US",
 			"degree" : "",
 			"dates" : "2008-2009",
-			"major" : "Comp Sci"
+			"major" : "Computer Science"
 		},
 		{
 			"name" : "Wake Tech",
@@ -79,7 +79,33 @@ var work = {
 			"url"		: "http://beadshop.com",
 			"description" : "Cat's role at Beadshop.com started out as a simple web production assistant, fixing broken links, adding small amounts of content to the website, and basic product photography. Her position quickly grew to include more robust daily web maintenance, promotional photography for the websites weekly front page, facebook, and newsletters, designing and implementing changes to the website's design as the company migrated to e-commerce platform Shopify, overseeing integration between Shopify, OrderDesk, and Endicia, editing customer receipts and packing slips, creating and editing youtube video tutorials, and page analytics and SEO tracking and implementation.",
 			"images" : ["images/beadshop/winter-3.jpg", "images/beadshop/kimono-1.jpg", "images/beadshop/kalahari-1.jpg","images/beadshop/bracelet-1.jpg" ]
+		},
+		{
+			"employer" : "Kara's Cupcakes",
+			"title" : "Baker",
+			"location" : "Palo Alto, CA, US",
+			"dates" : "Sept 2013- June 2014",
+			"url" : "https://karascupcakes.com/",
+			"description" : "Closing shift baker at the Palo Alto Kara's Cupcakes retail location. Responsible for baking and decorating cakes and cupcakes for retail sale and special orders. ",
+			"images" : ""
+		},
+		{
+			"employer" : "Foxwoods Resort Casino",
+			"title" : "Specialty Pastry Cook II",
+			"location" : "Mashantucket, CT, US",
+			"dates" : "March 2013 - Sept 2013",
+			"description" : "The highest rank below managment in the Foxwoods Bakery that supplied desserts for all of the casino's private events, buffets, and restaurants. Responsible for the mass production of various desserts for casino events.",
+			"images" : ["images/pastry/foxwoods-swans-1.jpg", "images/pastry/foxwoods-cupcakes-1.jpg", "images/pastry/foxwoods-cake-1.jpg", "images/pastry/foxwoods-cake-3.jpg"]
+		},
+		{
+			"employer" : "The Fearrington House Restaurant",
+			"title" : "Pastry Cook",
+			"location" : "Pittsboro, NC, US",
+			"dates" : "Sept 2012 - Feb 2013",
+			"description" : "A Relais & Châteaux property and one of the top wedding destinations in the South. Morning buffet pastry cook responsible for stocking the Fearrington House cafe, production of desserts for weddings, production of after dinner chocolates, and assisting in wedding cake production.",
+			"images" : ["images/pastry/fearrington-macs-1.jpg", "images/pastry/fearrington-cake-1.jpg", "images/pastry/fearrington-cake-2.jpg", "images/pastry/fearrington-chocolates-1.jpg"]
 		}
+
 	]
 };
 
@@ -89,13 +115,12 @@ var projects = {
 		{
 			"title" : "Portfolio Project 1",
 			"dates"	: "June 2015",
-			"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+			"description" : "Udacity Front-End Nanodegree Project #1 to create a single page portfolio page.",
 			"url" : "http://tarodotblank.github.io/Project-1/",
 			"images" : ["images/project1-2.jpg"]
 		}
 	]
 };
-
 
 header.display = function() {
 
@@ -107,6 +132,7 @@ header.display = function() {
 	var formattedBlog = HTMLblog.replace("%data%", bio.contacts.blog.name);
 	formattedBlog = formattedBlog.replace("#", bio.contacts.blog.url);
 	var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+	
 
 	$("#topContacts").append(formattedEmail);
 	$("#topContacts").append(formattedLinkedIn);
@@ -116,7 +142,9 @@ header.display = function() {
 
 	
 	$("#footerContacts").append(formattedEmail);
+	$("#footerContacts").append(formattedLinkedIn);
 	$("#footerContacts").append(formattedGitHub);
+	
 
 
 
