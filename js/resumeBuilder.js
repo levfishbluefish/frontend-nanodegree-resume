@@ -21,10 +21,9 @@ var bio = {
 			{
 			"name" : "taro.bubbletea",
 			"url"	: "http://tarodotblank.com/bubbletea/"
-			}
-	},	
-
-	"location" : "SF Bay Area",
+			},	
+		"location" : "SF Bay Area"
+	},
 
 	"welcomeMessage": "A front-end web developer, photographer, graphic designer, and SEO and marketing analyst, with a specialization in e-commerce. Cat can take you from a simple idea to a functional website complete with custom graphics and logos, product and promotional photography, SEO optimization, social media marketing, content for your blog, and even custom receipts and packing slips. No matter what step in the process you are, Cat will help you nail down your designs, help you plan and execute a plan to launch, provide on-going maintanence and content, or train your existing team to upkeep the site on their own.",
 
@@ -37,25 +36,25 @@ var education = {
 	"schools": 
 	[
 		{
-			"name" : "Wake Tech",
-			"location" : "Raleigh, NC, US",
-			"degree" : "A.A.S",
-			"dates" : "2009 - 2012",
-			"major" : "Baking and Pastry Arts"
-		},
-		{
-			"name" : "George Mason University",
-			"location" : "Fairfax, VA, US",
-			"degree" : "N/A",
-			"dates" : "2008-2009",
-			"major" : "Comp Sci"
-		},
-		{
 			"name" : "Foothill",
 			"location" : "Los Gatos, CA, US",
 			"major" : "Photography",
 			"dates" : "2014 - Current",
-			"degree" : "A.A.S"
+			"degree" : ""			
+		},
+		{
+			"name" : "George Mason University",
+			"location" : "Fairfax, VA, US",
+			"degree" : "",
+			"dates" : "2008-2009",
+			"major" : "Comp Sci"
+		},
+		{
+			"name" : "Wake Tech",
+			"location" : "Raleigh, NC, US",
+			"degree" : "A.A.S",
+			"dates" : "2009 - 2012",
+			"major" : "Baking and Pastry Arts"	
 		}
 	]	
 };
@@ -92,7 +91,7 @@ var projects = {
 			"dates"	: "June 2015",
 			"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
 			"url" : "http://tarodotblank.github.io/Project-1/",
-			"images" : ["http://placekitten.com/g/200/300", "http://placekitten.com/g/200/300"]
+			"images" : ["images/project1-2.jpg"]
 		}
 	]
 };
@@ -107,7 +106,7 @@ header.display = function() {
 	formattedGitHub = formattedGitHub.replace("#", bio.contacts.github.url)
 	var formattedBlog = HTMLblog.replace("%data%", bio.contacts.blog.name);
 	formattedBlog = formattedBlog.replace("#", bio.contacts.blog.url);
-	var formattedLocation = HTMLlocation.replace("%data%", bio.location);
+	var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 
 	$("#topContacts").append(formattedEmail);
 	$("#topContacts").append(formattedLinkedIn);
@@ -211,18 +210,22 @@ education.display = function() {
 
 	for(school in education.schools) {
 		var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
-		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
 		var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
 		var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
 		var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[school].major);
 		
-		
 
 		$(".education-entry:last").append(formattedSchoolName);
-		$(".education-entry:last").append(formattedSchoolDegree);
 		$(".education-entry:last").append(formattedSchoolDates);
 		$(".education-entry:last").append(formattedSchoolLocation);
 		$(".education-entry:last").append(formattedSchoolMajor);
+
+		if(education.schools[school].degree.length > 0) {
+		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
+		$(".education-entry:last").append(formattedSchoolDegree);
+			
+	}
+
 	}
 
 }

@@ -85,7 +85,7 @@ h1 {
 h2 {
   font-weight: bold;
   font-size: 24px;
-  color: #999;
+  color: #000;
   line-height: 29px;
   padding: 10px;
 }
@@ -117,7 +117,7 @@ h5 {
 .date-text {
   font-style: italic;
   font-size: 18px;
-  color: #999;
+  color: #000;
   line-height: 16px;
   float: left;
 }
@@ -125,7 +125,7 @@ h5 {
 .location-text {
   font-style: italic;
   font-size: 18px;
-  color: #999;
+  color: #000;
   line-height: 16px;
   float: right;
 
@@ -133,7 +133,7 @@ h5 {
 
 p {
   font-size: 18px;
-  color: #333;
+  color: #000;
   line-height: 21px;
 }
 
@@ -160,7 +160,7 @@ p {
 }
 
 .orange {
-  background-color: #f5ae23;
+  background-color: #f8d07f;
 }
 
 
@@ -190,7 +190,7 @@ a:hover {
 }
 
 .dark-gray {
-  background-color: #4a4a4a;
+   background-color: #62adc1;
 }
 
 /* TODO: Replace with image later */
