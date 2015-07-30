@@ -25,7 +25,7 @@ var bio = {
 		"location" : "SF Bay Area"
 	},
 
-	"welcomeMessage": "A front-end web developer, photographer, graphic designer, and SEO and marketing analyst, with a specialization in e-commerce. Cat can take you from a simple idea to a functional website complete with custom graphics and logos, product and promotional photography, SEO optimization, social media marketing, content for your blog, and even custom receipts and packing slips. No matter what step in the process you are, Cat will help you nail down your designs, help you plan and execute a plan to launch, provide on-going maintanence and content, or train your existing team to upkeep the site on their own.",
+	"welcomeMessage": "A former pastry chef turned front-end web developer, photographer, graphic designer, and SEO and marketing analyst, with a specialization in e-commerce. Cat can take you from a simple idea to a functional website complete with custom graphics and logos, product and promotional photography, SEO optimization, social media marketing, content for your blog, and even custom receipts and packing slips. No matter what step in the process you are, Cat will help you nail down your designs, help you plan and execute a plan to launch, provide on-going maintanence and content, or train your existing team to upkeep the site on their own.",
 
 	"skills" : ["HTML", "CSS", "Javascript", "Photoshop", "Lightroom", "Illustrator" , "Shopify", "Order Desk", "Endicia", "Wordpress", "Gulp", "Jekyll", "Search Console", "Analytics", "Adwords", "Tag Manager"]
 };
@@ -40,21 +40,25 @@ var education = {
 			"location" : "Los Gatos, CA, US",
 			"major" : "Photography",
 			"dates" : "2014 - Current",
-			"degree" : ""			
-		},
-		{
-			"name" : "George Mason University",
-			"location" : "Fairfax, VA, US",
-			"degree" : "",
-			"dates" : "2008-2009",
-			"major" : "Computer Science"
+			"degree" : "",	
+			"images" : ""		
 		},
 		{
 			"name" : "Wake Tech",
 			"location" : "Raleigh, NC, US",
 			"degree" : "A.A.S",
 			"dates" : "2009 - 2012",
-			"major" : "Baking and Pastry Arts"	
+			"major" : "Baking and Pastry Arts",
+			"images" : ["images/pastry/school-chocolate-1.jpg", "images/pastry/school-cake-1.jpg", "images/pastry/school-sugar-1.jpg", "images/pastry/school-flower-1.jpg"]
+		},
+		{
+			"name" : "George Mason University",
+			"location" : "Fairfax, VA, US",
+			"degree" : "",
+			"dates" : "2008-2009",
+			"major" : "Computer Science",
+			"images" : ""
+				
 		}
 	]	
 };
@@ -94,14 +98,16 @@ var work = {
 			"title" : "Specialty Pastry Cook II",
 			"location" : "Mashantucket, CT, US",
 			"dates" : "March 2013 - Sept 2013",
+			"url" : "https://www.flickr.com/photos/catfistori",
 			"description" : "The highest rank below managment in the Foxwoods Bakery that supplied desserts for all of the casino's private events, buffets, and restaurants. Responsible for the mass production of various desserts for casino events.",
-			"images" : ["images/pastry/foxwoods-swans-1.jpg", "images/pastry/foxwoods-cupcakes-1.jpg", "images/pastry/foxwoods-cake-1.jpg", "images/pastry/foxwoods-cake-3.jpg"]
+			"images" : ["images/pastry/foxwoods-swans-1.jpg", "images/pastry/foxwoods-cupcakes-1.jpg", "images/pastry/foxwoods-cake-1.jpg", "images/pastry/foxwoods-desserts-1.jpg"]
 		},
 		{
 			"employer" : "The Fearrington House Restaurant",
 			"title" : "Pastry Cook",
 			"location" : "Pittsboro, NC, US",
 			"dates" : "Sept 2012 - Feb 2013",
+			"url" : "https://www.flickr.com/photos/catfistori",
 			"description" : "A Relais & Châteaux property and one of the top wedding destinations in the South. Morning buffet pastry cook responsible for stocking the Fearrington House cafe, production of desserts for weddings, production of after dinner chocolates, and assisting in wedding cake production.",
 			"images" : ["images/pastry/fearrington-macs-1.jpg", "images/pastry/fearrington-cake-1.jpg", "images/pastry/fearrington-cake-2.jpg", "images/pastry/fearrington-chocolates-1.jpg"]
 		}
@@ -115,10 +121,25 @@ var projects = {
 		{
 			"title" : "Portfolio Project 1",
 			"dates"	: "June 2015",
-			"description" : "Udacity Front-End Nanodegree Project #1 to create a single page portfolio page.",
+			"description" : "The first project in the Udacity Front-End Nanodegree program. The assignment serves as an introduction into making a single page portfolio using well formatted HTML, and CSS with the beginning building blocks of a CSS framework. The structure for the site focuses on a grid system of rows and columns to help students visualize how websites are set up. This is then appilied into a simple, responsive webpage. Source code available for view as 'Project-1' on Github.",
 			"url" : "http://tarodotblank.github.io/Project-1/",
 			"images" : ["images/project1-2.jpg"]
+		},
+		{
+			"title" : "Black and White Landscape Study",
+			"dates" : "Spring 2015",
+			"description" : "An assignment as part of FootHill's Intro to Photography class. The assignment was to draw inspiration from a photographer and shoot similar subject matter or in the same style. The chosen photographer was Ansel Adams. While the work cannot be compared, the majority of the shoot took place during a single afternoon driving down the coast from San Gregorio Beach to Pebble Beach, Santa Cruz.",
+			"url" : "https://www.flickr.com/photos/catfistoriphotography/sets/72157654243741413",
+			"images" : ["images/blackandwhite/black-01.jpg", "images/blackandwhite/black-02.jpg", "images/blackandwhite/black-03.jpg", "images/blackandwhite/black-04.jpg"]
+		},
+		{
+			"title" : "Chocolate Production and Photography",
+			"dates" :"Summer 2014",
+			"description" : "Worked with entrepreneur Christine Moretti to help her develop and produce a new rocky road based chocolate for sale. The several month contract included taking her home-style recipe and altering and scaling it for mass production and public consumption while meeting all FDA food regulations. Additional duties included producing promotional photographs of the chocolates Cat created.",
+			"url" : "https://www.flickr.com/photos/catfistoriphotography/sets/72157656576667275",
+			"images" : ["images/oyr/strawberry-1.jpg", "images/oyr/orange-1.jpg", "images/oyr/banana-1.jpg", "images/oyr/lemon-1.jpg"]
 		}
+
 	]
 };
 
@@ -251,8 +272,14 @@ education.display = function() {
 		if(education.schools[school].degree.length > 0) {
 		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
 		$(".education-entry:last").append(formattedSchoolDegree);
-			
-	}
+		}
+
+		if(education.schools[school].images.length > 0) {
+			for(image in education.schools[school].images) {
+				var formattedSchoolImage = HTMLschoolImages.replace("%data%", education.schools[school].images[image]);
+				$(".education-entry:last").append(formattedSchoolImage);
+			}
+			}
 
 	}
 
