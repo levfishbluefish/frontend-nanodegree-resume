@@ -17,7 +17,7 @@ h6 {
 
 
 body {
-  background: url('images/pattern.png') no-repeat 50% 50% fixed; 
+  background: url('images/pattern.png') no-repeat 50% 50% fixed;
   background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -25,16 +25,12 @@ body {
 }
 
 
-.imageFlex {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-}
+
 
 #workImages {
   height: 20%;
   width:20%;
- 
+
 }
 
 #titleContainer {
@@ -59,7 +55,7 @@ body {
 
 #scrollDown {
   margin-top: 12%;
-  
+
 }
 
 .clear-fix {
@@ -74,6 +70,7 @@ body {
 
 h1 {
   font-size: 40px;
+  font-weight: 100;
   color: #000;
   line-height: 48px;
   display: inline;
@@ -156,9 +153,7 @@ p {
   padding-top: 20px;
 }
 
-.orange {
-  background-color: #f8d07f;
-}
+
 
 
 #contactLink {
@@ -186,7 +181,7 @@ a:hover {
   clear:both;
 }
 
-.dark-gray {
+.yellow {
    background-color: #62adc1;
 }
 
