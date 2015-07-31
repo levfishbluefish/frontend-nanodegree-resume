@@ -22,6 +22,11 @@ var $education = $("#education");
 
 
 
+ $(document).ready(function()
+ {
+    $("#topNav").sticky({topSpacing:0});
+ });
+
 $('a[href^="#"]').on('click', function(event) {
 
     var target = $( $(this).attr('href') );
@@ -34,7 +39,6 @@ $('a[href^="#"]').on('click', function(event) {
     }
 
 });
-
 
 //helper functions designed to reduce code repeition as suggested by first project reviewer
 function replaceAndAppend(rawHTML, target, insertion, destination, insertionURL, urltarget)
