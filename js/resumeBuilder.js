@@ -1,13 +1,76 @@
+'Use Strict';
+
+
 var projects = [];
 var bio = [];
 var education = [];
 var work = [];
-var onlineClasses = [];
+
+var header = {};
+var workHistory = {};
+var projectsCompleted = {};
+var educationHistory = {};
+
+
+var data = "%data%";
+var $header= $("#header");
+var $topContacts = $("#topContacts");
+var $footerContacts = $("#footerContacts");
+var $workExperience = $("#workExperience");
+var $projects = $("#projects");
+var $education = $("#education");
+
+
+
+$('a[href^="#"]').on('click', function(event) {
+
+    var target = $( $(this).attr('href') );
+
+    if( target.length ) {
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: target.offset().top
+        }, 1000);
+    }
+
+});
+
+
+//helper functions designed to reduce code repeition as suggested by first project reviewer
+function replaceAndAppend(rawHTML, target, insertion, destination, insertionURL, urltarget)
+{
+
+    var formattedHTML = rawHTML.replace(target, insertion);
+
+    //if the information contains a link
+    if(insertionURL)
+    {
+    	formattedHTML = formattedHTML.replace(urltarget, insertionURL);
+    };
+	destination.append(formattedHTML);
+}
+
+function replaceAndPrepend(rawHTML, target, insertion, destination)
+{
+	var formattedHTML = rawHTML.replace(target, insertion);
+	destination.prepend(formattedHTML);
+}
+
+function appendArray(rawHTML, target, insertion, destination)
+{
+	for(var item=0; item < insertion.length; item++)
+	{
+		console.log(insertion[item]);
+		var formattedItem = rawHTML.replace(target, insertion[item]);
+		destination.append(formattedItem);
+	}
+
+}
 
 //Displays name, role, profile picture, contact info, welcome message, and skills.
-bio.display = function()
+header.display = function()
 {
-	//bio data array
+	//bio data
 	bio =
 	{
 		name : "cat fistori",
@@ -37,67 +100,39 @@ bio.display = function()
 				url : "https://www.flickr.com/photos/catfistoriphotography"
 			}
 		},
+		image : "images/portrait5.jpg",
 		welcomeMessage : "A former pastry chef turned front-end web developer, photographer, graphic designer, and SEO and marketing analyst, with a specialization in e-commerce. Cat can take you from a simple idea to a functional website complete with custom graphics and logos, product and promotional photography, SEO optimization, social media marketing, content for your blog, and even custom receipts and packing slips. No matter what step in the process you are, Cat will help you nail down your designs, help you plan and execute a plan to launch, provide on-going maintanence and content, or train your existing team to upkeep the site on their own.",
 		skills : ["HTML", "CSS", "Javascript", "Photoshop", "Lightroom", "Illustrator" , "Shopify", "Order Desk", "Endicia", "Wordpress", "Gulp", "Jekyll", "Search Console", "Analytics", "Adwords", "Tag Manager"]
-	};//end of bio arry
-
+	};//end of bio data
 
 	//Appends info from bio data to variables in helper.js
+	replaceAndAppend(HTMLemail, data, bio.contacts.email, $topContacts);
+	replaceAndAppend(HTMLlinkedin, data, bio.contacts.linkedin.name, $topContacts, bio.contacts.linkedin.url, "#");
+	replaceAndAppend(HTMLgithub, data, bio.contacts.github.name, $topContacts, bio.contacts.github.url, "#");
+	replaceAndAppend(HTMLflickr, data, bio.contacts.flickr.name, $topContacts, bio.contacts.flickr.url, "#");
+	replaceAndAppend(HTMLblog, data, bio.contacts.blog.name, $topContacts, bio.contacts.blog.url, "#");
+	replaceAndAppend(HTMLlocation, data, bio.contacts.location, $topContacts);
 
-	//Linkedin Profile
-	var formattedLinkedIn = HTMLlinkedin.replace("%data%", bio.contacts.linkedin.name);
-	formattedLinkedIn = formattedLinkedIn.replace("#", bio.contacts.linkedin.url);
+	//Appends info to header
+	replaceAndPrepend(HTMLheaderRole, data, bio.role, $header);
+	replaceAndPrepend(HTMLheaderName, data, bio.name, $header);
+	replaceAndAppend(HTMLbioPic, data, bio.image, $header);
+	replaceAndAppend(HTMLwelcomeMsg, data, bio.welcomeMessage, $header);
 
-	//Email Address (personal)
-	var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+	//Appends info to footer Contacts
+	replaceAndAppend(HTMLemail, data, bio.contacts.email, $footerContacts);
+	replaceAndAppend(HTMLlinkedin, data, bio.contacts.linkedin.name, $footerContacts, bio.contacts.linkedin.url, "#");
+	replaceAndAppend(HTMLgithub, data, bio.contacts.github.name, $footerContacts, bio.contacts.github.url, "#");
 
-	//GitHub Profile
-	var formattedGitHub = HTMLgithub.replace("%data%", bio.contacts.github.name);
-	formattedGitHub = formattedGitHub.replace("#", bio.contacts.github.url);
+	$header.append(HTMLskillsStart);
+	appendArray(HTMLskills, data, bio.skills, $("#skills"));
 
-	//Flickr Photography Account
-	var formattedFlickr = HTMLflickr.replace("%data%", bio.contacts.flickr.name);
-	formattedFlickr = formattedFlickr.replace("#", bio.contacts.flickr.url);
-
-	//Blog
-	var formattedBlog = HTMLblog.replace("%data%", bio.contacts.blog.name);
-	formattedBlog = formattedBlog.replace("#", bio.contacts.blog.url);
-
-	//Location
-	var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-
-	//Appends info to page
-	$("#topContacts").append(formattedEmail, formattedLinkedIn, formattedGitHub, formattedBlog, formattedFlickr, formattedLocation);
-	$("#footerContacts").append(formattedEmail, formattedLinkedIn, formattedGitHub);
-
-
-	var formattedName = HTMLheaderName.replace("%data%", bio.name);
-	var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-	var formattedBioPic = HTMLbioPic.replace("%data%", "images/portrait5.jpg");
-	var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-
-
-	$("#header").prepend(formattedRole);
-	$("#header").prepend(formattedName);
-	$("#header").append(formattedBioPic);
-	$("#header").append(formattedWelcomeMsg);
-
-
-	if(bio.skills.length > 0)
-	{
-		$("#header").append(HTMLskillsStart);
-		for(var skill=0; skill < bio.skills.length; skill++)
-			{
-				var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
-				$("#skills").append(formattedSkill);
-			}
-	}
 	return bio;
-};//end bio.display
+};//end header.display
 
 
 //Work function displays work history
-work.display = function()
+workHistory.display = function()
 {
 	//work data array
 	work =
@@ -150,49 +185,25 @@ work.display = function()
 				images : ["images/pastry/fearrington-macs-1.jpg", "images/pastry/fearrington-cake-1.jpg", "images/pastry/fearrington-cake-2.jpg", "images/pastry/fearrington-chocolates-1.jpg"]
 			}
 
-		]//end job array
-	};//end  work array
-
-
-
+		]
+	};
 	$("#workExperience").append(HTMLworkStart);
 
-	if(work.jobs.length >0)
+	if(work.jobs.length)
 	{
 		for(var job=0 ; job<work.jobs.length; job++)
 		{
-			//Employer names
-			var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-			formattedEmployer = formattedEmployer.replace("#", work.jobs[job].url);
+			//appends work information
+			var workNameAndTitle = work.jobs[job].employer + ": " + work.jobs[job].title;
+			replaceAndAppend(HTMLworkEmployer, data, workNameAndTitle, $(".work-entry:last"), work.jobs[job].url, "#");
+			replaceAndAppend(HTMLworkDates, data, work.jobs[job].dates, $(".work-entry:last"));
+			replaceAndAppend(HTMLworkLocation, data, work.jobs[job].location, $(".work-entry:last"));
+			replaceAndAppend(HTMLworkDescription, data, work.jobs[job].description, $(".work-entry:last"));
 
-			//Job Title
-			var formattedJobTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-
-			//Combines Employer Name and Title to appear on the same line
-			var formattedEmployerTitle = formattedEmployer + formattedJobTitle;
-
-			//Dates worked at each Job
-			var formattedJobDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-
-			//Location of Job
-			var formattedJobLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-
-			//Job Description
-			var formattedJobDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
-
-
-			//Adds Employer Name, Job Title, Dates, Location, and Description
-			$(".work-entry:last").append(formattedEmployerTitle, formattedJobDates, formattedJobLocation, formattedJobDescription);
-
-
-			//if a job entry includes photographs, this appends them to the page
-			if(work.jobs[job].images.length > 0)
+			//if there are images for this job entry, itterate through array
+			if(work.jobs[job].images.length)
 			{
-				for(var image= 0; image < work.jobs[job].images.length; image++)
-				{
-					var formattedJobImage = HTMLworkImages.replace("%data%", work.jobs[job].images[image]);
-					$(".work-entry:last").append(formattedJobImage);
-				}
+				appendArray(HTMLworkImages, data, work.jobs[job].images,$(".work-entry:last"));
 			}
 		}
 	}
@@ -201,7 +212,7 @@ work.display = function()
 };//end work display function
 
 //Displays Projects information to website
-projects.display = function()
+projectsCompleted.display = function()
 {
 	projects =
 	{
@@ -241,39 +252,27 @@ projects.display = function()
 
 	$("#projects").append(HTMLprojectStart);
 
-	if(projects.projects.length > 0)
+	if(projects.projects.length)
 	{
 		for(var project=0; project<projects.projects.length; project++)
 		{
-			//Project title and url
-			var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
-			formattedProjectTitle = formattedProjectTitle.replace("#", projects.projects[project].url);
+			//adds project info
+			replaceAndAppend(HTMLprojectTitle, data, projects.projects[project].title, $(".project-entry:last"), projects.projects[project].url, "#");
+			replaceAndAppend(HTMLprojectDates, data, projects.projects[project].dates, $(".project-entry:last"));
+			replaceAndAppend(HTMLprojectDescription, data, projects.projects[project].description, $(".project-entry:last"));
 
-			//Dates of project
-			var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
-
-			//Description
-			var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
-
-			//Adds Project title, dates, and descriptions to the page
-			$(".project-entry:last").append(formattedProjectTitle, formattedProjectDates, formattedProjectDescription);
-
-			//if project entry contains photographs, appends them to the page
-			if(projects.projects[project].images.length > 0)
+			//if there are images for this project, itterate through the array
+			if(projects.projects[project].images.length)
 			{
-				for(var image=0; image < projects.projects[project].images.length; image++)
-				{
-					var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
-					$(".project-entry:last").append(formattedProjectImage);
-				}
+				appendArray(HTMLprojectImage, data, projects.projects[project].images, $(".project-entry:last"));
 			}
 		}
 	}
 
 	return projects;
-};//end of projects function
+};//end of projectsCompleted function
 
-education.display = function()
+educationHistory.display = function()
 {
 	education =
 	{
@@ -312,48 +311,40 @@ education.display = function()
 				images : ""
 			}
 		]
-	};//end education array
+	};//end of education data
 
 	$("#education").append(HTMLschoolStart);
 
-	if(education.schools.length > 0)
+	if(education.schools.length)
 	{
 		for(var school=0; school<education.schools.length; school++)
 		{
-			var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
-			var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
-			var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
-			var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[school].major);
-
-			//Adds School Name, Dates attendned, Location of School, and Major studies
-			$(".education-entry:last").append(formattedSchoolName, formattedSchoolDates, formattedSchoolLocation, formattedSchoolMajor);
+			replaceAndAppend(HTMLschoolName, data, education.schools[school].name, $(".education-entry:last"));
+			replaceAndAppend(HTMLschoolDates, data, education.schools[school].dates, $(".education-entry:last"));
+			replaceAndAppend(HTMLschoolLocation, data, education.schools[school].location, $(".education-entry:last"));
+			replaceAndAppend(HTMLschoolMajor, data, education.schools[school].major, $(".education-entry:last"));
 
 			//if degree received, add to page
-			if(education.schools[school].degree.length > 0)
+			if(education.schools[school].degree.length)
 			{
-				var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
-			$(".education-entry:last").append(formattedSchoolDegree);
+				replaceAndAppend(HTMLschoolDegree, data, education.schools[school].degree, $(".education-entry:last"));
 			}
 
 			//if school entry has images, display on page
-			if(education.schools[school].images.length > 0)
+			if(education.schools[school].images.length)
 			{
-				for(var image=0; image<education.schools[school].images.length; image++)
-				{
-					var formattedSchoolImage = HTMLschoolImages.replace("%data%", education.schools[school].images[image]);
-					$(".education-entry:last").append(formattedSchoolImage);
-				}
+				appendArray(HTMLschoolImages, data, education.schools[school].images, $(".education-entry:last"));
 			}
 		}
 	}
 	return education;
-};//end education display array
+};
 
 
-bio.display();
-work.display();
-projects.display();
-education.display();
+header.display();
+workHistory.display();
+projectsCompleted.display();
+educationHistory.display();
 
 $("#map-div").append(googleMap);
 

@@ -103,7 +103,6 @@ h4 {
   line-height: 17px;
 }
 
-
 .date-text {
   font-style: italic;
   font-size: 18px;
@@ -133,7 +132,6 @@ p {
 #bodyLink {
   color: #1199c3;
   font-size: 25px;
-  text-decoration: none;
   margin-top: 10px;
   display: block;
 }
@@ -154,7 +152,7 @@ p {
 }
 
 
-#contactLink {
+#contactLink, .topMenu {
   font-weight: bold;
   color: #fff;
 
@@ -265,6 +263,7 @@ span {
   .welcome-message {
     display: none;
   }
+
   .workImages {
     display: none;
   }
