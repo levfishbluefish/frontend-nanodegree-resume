@@ -21,12 +21,13 @@ var $projects = $("#projects");
 var $education = $("#education");
 
 
-
- $(document).ready(function()
- {
+//Uses jQuery plugin "Sticky" to stick the top navigation to the top of the page when scrolling down, and unsticks when scroll up
+ $(document).ready(function() {
     $("#topNav").sticky({topSpacing:0});
  });
 
+
+//Automatically scrolls to element when clicked on the top navigation
 $('a[href^="#"]').on('click', function(event) {
 
     var target = $( $(this).attr('href') );
@@ -41,29 +42,24 @@ $('a[href^="#"]').on('click', function(event) {
 });
 
 //helper functions designed to reduce code repeition as suggested by first project reviewer
-function replaceAndAppend(rawHTML, target, insertion, destination, insertionURL, urltarget)
-{
+function replaceAndAppend(rawHTML, target, insertion, destination, insertionURL, urltarget) {
 
     var formattedHTML = rawHTML.replace(target, insertion);
 
     //if the information contains a link
-    if(insertionURL)
-    {
+    if(insertionURL) {
     	formattedHTML = formattedHTML.replace(urltarget, insertionURL);
-    };
+    }
 	destination.append(formattedHTML);
 }
 
-function replaceAndPrepend(rawHTML, target, insertion, destination)
-{
+function replaceAndPrepend(rawHTML, target, insertion, destination) {
 	var formattedHTML = rawHTML.replace(target, insertion);
 	destination.prepend(formattedHTML);
 }
 
-function appendArray(rawHTML, target, insertion, destination)
-{
-	for(var item=0; item < insertion.length; item++)
-	{
+function appendArray(rawHTML, target, insertion, destination) {
+	for(var item=0; item < insertion.length; item++) {
 		console.log(insertion[item]);
 		var formattedItem = rawHTML.replace(target, insertion[item]);
 		destination.append(formattedItem);
@@ -72,34 +68,27 @@ function appendArray(rawHTML, target, insertion, destination)
 }
 
 //Displays name, role, profile picture, contact info, welcome message, and skills.
-header.display = function()
-{
+header.display = function() {
 	//bio data
-	bio =
-	{
+	bio = {
 		name : "cat fistori",
 		role : "front-end web developer",
-		contacts :
-		{
-			linkedin :
-			{
+		contacts : {
+			linkedin : {
 				name: "catfistori",
 				url : "https://www.linkedin.com/pub/cat-fistori/55/222/76a"
 			},
 			email : "cat.fistori@gmail.com",
-			github :
-			{
+			github : {
 			 	name : "catfishbluefish",
 			 	url	: "https://github.com/catfishbluefish"
 			},
-			blog :
-			{
+			blog : {
 				name : "catfishblogfish",
 				url	: "http://catfishbluefish.com/blog"
 			},
 			location : "SF Bay Area",
-			flickr :
-			{
+			flickr : {
 				name : "catfistoriphotography",
 				url : "https://www.flickr.com/photos/catfistoriphotography"
 			}
@@ -136,13 +125,10 @@ header.display = function()
 
 
 //Work function displays work history
-workHistory.display = function()
-{
-	//work data array
-	work =
-	{
-		jobs :
-		[
+workHistory.display = function() {
+	//work data object
+	work = {
+		jobs : [
 			{
 				employer	: "catfishbluefish",
 				title 	: "Freelance Web-Developer",
@@ -193,10 +179,8 @@ workHistory.display = function()
 	};
 	$("#workExperience").append(HTMLworkStart);
 
-	if(work.jobs.length)
-	{
-		for(var job=0 ; job<work.jobs.length; job++)
-		{
+	if(work.jobs.length) {
+		for(var job=0 ; job<work.jobs.length; job++) {
 			//appends work information
 			var workNameAndTitle = work.jobs[job].employer + ": " + work.jobs[job].title;
 			replaceAndAppend(HTMLworkEmployer, data, workNameAndTitle, $(".work-entry:last"), work.jobs[job].url, "#");
@@ -205,8 +189,7 @@ workHistory.display = function()
 			replaceAndAppend(HTMLworkDescription, data, work.jobs[job].description, $(".work-entry:last"));
 
 			//if there are images for this job entry, itterate through array
-			if(work.jobs[job].images.length)
-			{
+			if(work.jobs[job].images.length) {
 				appendArray(HTMLworkImages, data, work.jobs[job].images,$(".work-entry:last"));
 			}
 		}
@@ -216,12 +199,9 @@ workHistory.display = function()
 };//end work display function
 
 //Displays Projects information to website
-projectsCompleted.display = function()
-{
-	projects =
-	{
-		projects :
-		[
+projectsCompleted.display = function() {
+	projects = {
+		projects : [
 			{
 				title : "Portfolio Project 1",
 				dates	: "June 2015",
@@ -256,18 +236,15 @@ projectsCompleted.display = function()
 
 	$("#projects").append(HTMLprojectStart);
 
-	if(projects.projects.length)
-	{
-		for(var project=0; project<projects.projects.length; project++)
-		{
+	if(projects.projects.length) {
+		for(var project=0; project<projects.projects.length; project++) {
 			//adds project info
 			replaceAndAppend(HTMLprojectTitle, data, projects.projects[project].title, $(".project-entry:last"), projects.projects[project].url, "#");
 			replaceAndAppend(HTMLprojectDates, data, projects.projects[project].dates, $(".project-entry:last"));
 			replaceAndAppend(HTMLprojectDescription, data, projects.projects[project].description, $(".project-entry:last"));
 
 			//if there are images for this project, itterate through the array
-			if(projects.projects[project].images.length)
-			{
+			if(projects.projects[project].images.length) {
 				appendArray(HTMLprojectImage, data, projects.projects[project].images, $(".project-entry:last"));
 			}
 		}
@@ -276,12 +253,9 @@ projectsCompleted.display = function()
 	return projects;
 };//end of projectsCompleted function
 
-educationHistory.display = function()
-{
-	education =
-	{
-		schools:
-		[
+educationHistory.display = function() {
+	education = {
+		schools: [
 			{
 				name : "Udacity Online University",
 				location : "Mountain View, CA, US",
@@ -319,24 +293,20 @@ educationHistory.display = function()
 
 	$("#education").append(HTMLschoolStart);
 
-	if(education.schools.length)
-	{
-		for(var school=0; school<education.schools.length; school++)
-		{
+	if(education.schools.length) {
+		for(var school=0; school<education.schools.length; school++) {
 			replaceAndAppend(HTMLschoolName, data, education.schools[school].name, $(".education-entry:last"));
 			replaceAndAppend(HTMLschoolDates, data, education.schools[school].dates, $(".education-entry:last"));
 			replaceAndAppend(HTMLschoolLocation, data, education.schools[school].location, $(".education-entry:last"));
 			replaceAndAppend(HTMLschoolMajor, data, education.schools[school].major, $(".education-entry:last"));
 
 			//if degree received, add to page
-			if(education.schools[school].degree.length)
-			{
+			if(education.schools[school].degree.length) {
 				replaceAndAppend(HTMLschoolDegree, data, education.schools[school].degree, $(".education-entry:last"));
 			}
 
 			//if school entry has images, display on page
-			if(education.schools[school].images.length)
-			{
+			if(education.schools[school].images.length) {
 				appendArray(HTMLschoolImages, data, education.schools[school].images, $(".education-entry:last"));
 			}
 		}
