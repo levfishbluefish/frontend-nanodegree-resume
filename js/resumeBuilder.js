@@ -60,7 +60,6 @@ function replaceAndPrepend(rawHTML, target, insertion, destination) {
 
 function appendArray(rawHTML, target, insertion, destination) {
 	for(var item=0; item < insertion.length; item++) {
-		console.log(insertion[item]);
 		var formattedItem = rawHTML.replace(target, insertion[item]);
 		destination.append(formattedItem);
 	}
